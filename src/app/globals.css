@@ -1,0 +1,298 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-cream: var(--cream);
+  --color-cream-muted: var(--cream-muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-border: var(--border);
+  --color-border-ink: var(--border-ink);
+
+  --font-display: var(--font-caslon);
+  --font-sans: var(--font-hanken);
+
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --z-base: 0;
+  --z-nav: 40;
+  --z-modal: 70;
+}
+
+:root {
+  /* British American Tennis and Golf Academy — heritage club palette:
+     cream ground, forest-green ink, kelly-green accent. Green + cream do the
+     work; the brighter kelly green is the jewel (crest ball, marks, hover).
+     Augusta / collegiate old-money read. */
+  --bg: #f4f1e8; /* cream ground, dominant */
+  --panel: #ece6d6; /* deeper cream, cards on ground */
+  --ink: #0e3b2e; /* forest green, primary text + full-bleed grounds (11:1 on cream) */
+  --ink-soft: #17533f; /* softened forest for large display */
+  --muted: #566a5d; /* green-tinted grey, secondary text (AA 5.0:1 on cream) */
+  --cream: #f4f1e8; /* text on forest grounds */
+  --cream-muted: #bcc9c0; /* secondary text on forest grounds (7.2:1 on forest) */
+  --accent: #2e8b4c; /* kelly green, marks/fills/hover only */
+  --accent-ink: #1f6b3a; /* deep green for the rare accent text (AA 5.8:1 on cream) */
+  --border: #ddd5c3; /* hairline on cream */
+  --border-ink: #2c5748; /* hairline on forest grounds */
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent-ink);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Letter-spaced small-cap eyebrow — a heraldic label, used sparingly */
+  .eyebrow {
+    font-family: var(--font-sans), sans-serif;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .eyebrow-on-ink {
+    color: var(--cream-muted);
+  }
+
+  /* Thin rule used to divide heritage sections */
+  .hairline {
+    height: 1px;
+    background: var(--border);
+    border: 0;
+  }
+
+  /* Primary button — solid forest green, cream label. Physical hover lift. */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    background: var(--ink);
+    color: var(--cream);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.01em;
+    padding: 0.85rem 1.5rem;
+    border-radius: 2px;
+    transition:
+      transform 0.25s var(--ease-out-quint),
+      box-shadow 0.25s var(--ease-out-quint),
+      background 0.25s var(--ease-out-quint);
+    box-shadow: 0 1px 2px rgba(14, 59, 46, 0.12);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(14, 59, 46, 0.2);
+  }
+  .btn-primary.on-ink {
+    background: var(--cream);
+    color: var(--ink);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  }
+  .btn-primary.on-ink:hover {
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+  }
+
+  /* Secondary button — outlined, quieter */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.85rem 1.35rem;
+    border-radius: 2px;
+    border: 1px solid var(--ink);
+    transition:
+      background 0.25s var(--ease-out-quint),
+      color 0.25s var(--ease-out-quint);
+  }
+  .btn-ghost:hover {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .btn-ghost.on-ink {
+    color: var(--cream);
+    border-color: var(--border-ink);
+  }
+  .btn-ghost.on-ink:hover {
+    background: var(--cream);
+    color: var(--ink);
+  }
+
+  /* Animated underline for text links */
+  .link-underline {
+    background-image: linear-gradient(var(--accent-ink), var(--accent-ink));
+    background-size: 0% 1.5px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s var(--ease-out-quint);
+    padding-bottom: 1px;
+  }
+  .link-underline:hover {
+    background-size: 100% 1.5px;
+  }
+
+  /* Image / content placeholder frame — clearly marks a swap-in slot */
+  .placeholder-frame {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      repeating-linear-gradient(
+        135deg,
+        transparent 0 14px,
+        rgba(14, 59, 46, 0.035) 14px 28px
+      ),
+      var(--panel);
+    border: 1px dashed var(--border-ink);
+    border-radius: 3px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* Larger hero CTA for prominence */
+  .btn-lg {
+    font-size: 1rem;
+    padding: 1.05rem 1.9rem;
+  }
+
+  /* Quiet shine wipe across a primary button on hover — premium CTA cue */
+  .btn-sheen {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .btn-sheen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 38%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 62%
+    );
+    transform: translateX(-130%);
+    transition: transform 0.75s var(--ease-out-quint);
+    pointer-events: none;
+  }
+  .btn-sheen:hover::after {
+    transform: translateX(130%);
+  }
+
+  /* True-bold Caslon for small serif labels (Display is a single 400 weight) */
+  .font-serif-bold {
+    font-family: var(--font-caslon-text), Georgia, "Times New Roman", serif;
+    font-weight: 700;
+  }
+
+  /* Hero headline specular sheen — a slow white highlight gliding across the
+     letters, then resting. Both rest states are solid ink. Frozen under
+     prefers-reduced-motion (stays solid ink). */
+  .hero-shine {
+    background: linear-gradient(
+      108deg,
+      var(--ink) 0%,
+      var(--ink) 43%,
+      rgba(255, 255, 255, 0.92) 50%,
+      var(--ink) 57%,
+      var(--ink) 100%
+    );
+    background-size: 250% 100%;
+    background-position: 175% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: hero-sheen 8s var(--ease-out-quart) infinite;
+    animation-delay: 0.9s;
+  }
+}
+
+@keyframes hero-sheen {
+  0%,
+  12% {
+    background-position: 175% 0;
+  }
+  46%,
+  100% {
+    background-position: -75% 0;
+  }
+}
+
+/* Reveal: content is visible by default; JS only enhances the entrance. */
+[data-reveal] {
+  opacity: 1;
+}
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.6s var(--ease-out-quint),
+    transform 0.6s var(--ease-out-quint);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.2s linear;
+  }
+  .hero-shine {
+    animation: none;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
