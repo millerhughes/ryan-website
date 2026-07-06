@@ -1,6 +1,6 @@
+import Image from "next/image";
 import { Crest } from "./crest";
 import { Reveal } from "./reveal";
-import { Placeholder } from "./placeholder";
 import { TEL_HREF, MAILTO, PHONE_DISPLAY, BUSINESS } from "@/lib/site";
 
 export function Hero() {
@@ -78,11 +78,20 @@ export function Hero() {
         {/* Right — hero portrait slot */}
         <Reveal delay={200} className="relative">
           <div className="relative">
-            <Placeholder
-              label="Hero photo, Ryan coaching or on the course"
-              ratio="4 / 5"
-              className="shadow-[0_20px_50px_-20px_rgba(14,59,46,0.4)]"
-            />
+            <div
+              className="w-full overflow-hidden rounded-[3px] border border-border shadow-[0_20px_50px_-20px_rgba(14,59,46,0.4)]"
+              style={{ aspectRatio: "3 / 4" }}
+            >
+              <Image
+                src="/hero-sim.jpg"
+                alt="Young players training in the British American Tennis and Golf Academy golf simulator studio"
+                width={1200}
+                height={1600}
+                priority
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="h-full w-full object-cover"
+              />
+            </div>
             {/* Small crest tab, a heritage seal on the image corner */}
             <div className="absolute -bottom-4 -left-4 hidden h-20 w-20 items-center justify-center rounded-full border border-border bg-bg shadow-md sm:flex">
               <Crest className="h-11 w-auto" />
