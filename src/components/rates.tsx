@@ -4,8 +4,8 @@ import { TEL_HREF, PHONE_DISPLAY } from "@/lib/site";
 // Golf rates as printed (intake.md). Tennis rates unknown — the layout accepts
 // a second group without redesign. Swap when Ryan supplies tennis pricing.
 const GOLF_RATES = [
-  { price: "$125", unit: "per hour", note: "Your range or home course" },
-  { price: "$125", unit: "per hour", note: "In the studio" },
+  { price: "$150", unit: "per hour", note: "Your range or home course" },
+  { price: "$150", unit: "per hour", note: "In the studio" },
   { price: "$200", unit: "9 holes", note: "On-course playing lesson" },
   { price: "$300", unit: "18 holes", note: "On-course playing lesson" },
 ];
