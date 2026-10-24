@@ -9,7 +9,8 @@ import { SmoothScroll } from "@/components/smooth-scroll";
 import { SiteNav } from "@/components/site-nav";
 import { SiteFooter } from "@/components/site-footer";
 import { MobileCallBar } from "@/components/mobile-call-bar";
-import { BUSINESS, PHONE_DISPLAY, CONTACT_EMAIL } from "@/lib/site";
+import { BUSINESS, PHONE_DISPLAY, CONTACT_EMAIL, SITE_URL } from "@/lib/site";
+import { FAQS } from "@/lib/faq";
 
 const caslon = Libre_Caslon_Display({
   variable: "--font-caslon",
@@ -32,9 +33,6 @@ const hanken = Hanken_Grotesk({
   subsets: ["latin"],
   display: "swap",
 });
-
-// SWAP AT DEPLOY: set to the real domain once chosen (intake.md — domain deferred).
-const SITE_URL = "https://batga.example.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -70,9 +68,19 @@ export const metadata: Metadata = {
   },
 };
 
-// LocalBusiness / SportsActivityLocation structured data for local SEO.
-// AT DEPLOY: add `sameAs: [<Google Business Profile URL>]` and an
-// `openingHoursSpecification` once Ryan confirms hours (intake.md gaps).
+// LocalBusiness / SportsActivityLocation structured data for local SEO + AEO.
+//
+// TWO one-line adds once Ryan confirms the details (both are the biggest local
+// levers, so do them as soon as you have them):
+//   1. sameAs: ["<Google Business Profile URL>"] — Ryan has no GBP yet; creating
+//      one is the top local-SEO action. Add its URL here once live.
+//   2. openingHoursSpecification — add real weekly hours when confirmed, e.g.
+//        openingHoursSpecification: [{
+//          "@type": "OpeningHoursSpecification",
+//          dayOfWeek: ["Monday", "Tuesday", ...],
+//          opens: "08:00", closes: "20:00",
+//        }],
+//      Keep it matched to the visible "Visit" section (currently by appointment).
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SportsActivityLocation",
@@ -124,6 +132,18 @@ const jsonLd = {
   ],
 };
 
+// FAQPage structured data — mirrors the visible FAQ (lib/faq.ts) so answer
+// engines (Google AI, ChatGPT) can quote it. Content must match what renders.
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -145,6 +165,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
         />
       </head>
       <body className="min-h-screen antialiased">

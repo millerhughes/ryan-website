@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Crest } from "./crest";
 import { Reveal } from "./reveal";
-import { TEL_HREF, MAILTO, PHONE_DISPLAY, BUSINESS } from "@/lib/site";
+import { TEL_HREF, PHONE_DISPLAY, BUSINESS } from "@/lib/site";
 
 export function Hero() {
   return (
@@ -45,7 +45,7 @@ export function Hero() {
             </p>
           </Reveal>
 
-          <Reveal trigger="load" delay={1200}>
+          <Reveal delay={260}>
             <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
               <a
                 href={TEL_HREF}
@@ -54,13 +54,13 @@ export function Hero() {
                 <PhoneIcon />
                 Call or text {PHONE_DISPLAY}
               </a>
-              <a href={MAILTO} className="btn-ghost w-full sm:w-auto">
-                Email Ryan
+              <a href="#visit" className="btn-ghost w-full sm:w-auto">
+                Check availability
               </a>
             </div>
           </Reveal>
 
-          <Reveal trigger="load" delay={1450}>
+          <Reveal delay={340}>
             <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted lg:justify-start">
               <li className="flex items-center gap-2">
                 <Dot /> +2.4 golf handicap

@@ -23,10 +23,19 @@ export const BUSINESS = {
   region: "Atlanta, Georgia",
 } as const;
 
+// Production URL — drives canonical, Open Graph, Twitter card, sitemap, robots
+// and JSON-LD. Set to Ryan's real domain (address of record) even though it is
+// not connected to Vercel yet: this only writes metadata strings, so pointing
+// it at the final domain now means launch needs zero code changes. Single
+// source of truth. Match apex vs www to however the domain is finally served.
+export const SITE_URL = "https://britishamericantennisgolfacademy.com";
+
 export const NAV_LINKS = [
   { label: "The Coach", href: "#coach" },
   { label: "Coaching", href: "#coaching" },
   { label: "Method", href: "#method" },
   { label: "Rates", href: "#rates" },
+  { label: "Visit", href: "#visit" },
+  { label: "FAQ", href: "#faq" },
   { label: "Contact", href: "#contact" },
 ] as const;

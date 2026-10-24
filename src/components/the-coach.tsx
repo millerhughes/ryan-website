@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { Reveal } from "./reveal";
-import { Placeholder } from "./placeholder";
 
 const CREDENTIALS = [
   { figure: "+2.4", label: "Lowest handicap" },
@@ -47,10 +47,19 @@ export function TheCoach() {
         {/* Story */}
         <div className="mt-16 grid items-center gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <Reveal className="order-2 lg:order-1">
-            <Placeholder
-              label="Portrait, Ryan (headshot)"
-              ratio="4 / 5"
-            />
+            <div
+              className="w-full overflow-hidden rounded-[3px] border border-border"
+              style={{ aspectRatio: "4 / 5" }}
+            >
+              <Image
+                src="/headshot-ryan.jpg"
+                alt="Ryan Hughes, head coach at the British American Tennis and Golf Academy"
+                width={1290}
+                height={1570}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="h-full w-full object-cover"
+              />
+            </div>
           </Reveal>
 
           <Reveal delay={80} className="order-1 lg:order-2">

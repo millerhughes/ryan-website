@@ -1,5 +1,5 @@
+import Image from "next/image";
 import { Reveal } from "./reveal";
-import { Placeholder } from "./placeholder";
 
 const POINTS = [
   {
@@ -60,11 +60,19 @@ export function Method() {
 
           <Reveal delay={120}>
             <div className="relative">
-              <Placeholder
-                label="Studio photo, indoor golf simulator in use"
-                ratio="4 / 5"
-                tone="dark"
-              />
+              <div
+                className="w-full overflow-hidden rounded-[3px] border border-cream-muted/40"
+                style={{ aspectRatio: "4 / 5" }}
+              >
+                <Image
+                  src="/studio-sim.jpg"
+                  alt="Junior player training in the British American Tennis and Golf Academy indoor golf simulator studio"
+                  width={1191}
+                  height={1443}
+                  sizes="(min-width: 1024px) 40vw, 100vw"
+                  className="h-full w-full object-cover"
+                />
+              </div>
               <div className="mt-3 flex items-center justify-between text-xs uppercase tracking-[0.14em] text-cream-muted/70">
                 <span>GC3 launch monitor</span>
                 <span>Studio &amp; on-course</span>
