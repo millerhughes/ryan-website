@@ -1,15 +1,13 @@
 import { Reveal } from "./reveal";
 
-// Two real testimonials collected from Ryan's texts (2026-10-24). The first
-// client's name wasn't visible in the screenshot — Miller will supply it;
-// until then it's a clearly-marked slot, not an invented name. Do not ship
-// a guessed name as real. Third card stays an honest placeholder (no tennis
-// testimonial collected yet — intake.md gap 4).
+// Two real testimonials collected from Ryan's texts (2026-10-24). Third card
+// stays an honest placeholder (no tennis testimonial collected yet —
+// intake.md gap 4).
 const TESTIMONIALS = [
   {
     quote:
       "Your tweaks to my swing made a huge difference! From the senior tees, 74 and 78 with my own ball, lots of GIRs and par saves from 60-100 yards out.",
-    name: null,
+    name: "Rod Armbruster",
     sport: "Golf",
   },
   {
