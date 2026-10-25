@@ -13,7 +13,7 @@ const TESTIMONIALS = [
   {
     quote:
       "Low round ever today — 69 in the Member-Member. Thanks for your coaching and friendship, brother!!!",
-    name: "Brent",
+    name: "Brent Beachy",
     sport: "Golf",
   },
 ];
